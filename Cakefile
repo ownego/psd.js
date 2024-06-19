@@ -4,6 +4,8 @@ UglifyJS = require 'uglify-js'
 Promise = require 'bluebird'
 {spawn, exec} = require 'child_process'
 util = require 'util'
+coffeeify = require('coffeeify')
+coffeeify.sourceMap = false
 
 writeFile = (dest, src) ->
   new Promise (resolve, reject) ->
@@ -15,13 +17,15 @@ writeFile = (dest, src) ->
 
 task 'compile-browser', 'Compile with browserify for the web', ->
   browserify
+    debug: false
+    standalone: 'PSD'
     noParse: [
       'fs'
     ]
-  .transform('coffeeify')
+  .transform(coffeeify)
   .require('./shims/png.coffee', expose: './image_exports/png.coffee')
   .require('./shims/init.coffee', expose: './psd/init.coffee')
-  .require('./lib/psd.coffee', expose: 'psd')
+  .add('./lib/psd.coffee', expose: 'psd')
   .bundle (err, src, map) ->
     return console.log(err) if err?
     writeFile('./dist/psd.js', src)
