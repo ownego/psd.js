@@ -20,7 +20,7 @@
     "iconv-lite": "~ 0.4.4",
     "jspack": "~ 0.0.3",
     "lodash": "~4.17.21",
-    "parse-engine-data": "~ 0.1",
+    "parse-engine-data": "ownego/parseEngineData#master",
     "pngjs": "3.2.0",
     "rsvp": "~ 3.0.6"
   },

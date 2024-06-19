@@ -26895,7 +26895,7 @@ function hashEnd(text){
     }
 }
 function multiLineArrayStart(text){
-    var reg = /^\/(\w+) \[$/;
+    var reg = /^\/(_?\w+) \[$/;
 
     return {
         match: Match(reg, text),
@@ -26916,7 +26916,7 @@ function multiLineArrayEnd(text){
     }
 }
 function property(text){
-    var reg = /^\/([A-Z0-9]+)$/i;
+    var reg = /^\/(_?[A-Z0-9]+)$/i;
 
     return {
         match: Match(reg, text),
@@ -26926,7 +26926,7 @@ function property(text){
     }
 }
 function propertyWithData(text){
-    var reg = /^\/([A-Z0-9]+)\s((.|\r)*)$/i;
+    var reg = /^\/(_?[A-Z0-9]+)\s((.|\r)*)$/i;
 
     return {
         match: Match(reg, text),
@@ -27015,6 +27015,7 @@ function pushKeyValue(key,value){
 }
 
 module.exports = paresr;
+
 }).call(this)}).call(this,require("buffer").Buffer)
 },{"buffer":69,"iconv-lite":90}],95:[function(require,module,exports){
 // shim for using process in browser
